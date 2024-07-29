@@ -78,6 +78,8 @@ public class LoadStudent extends HttpServlet {
     }
 
     private void showCreateForm(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+        List<Classes> listClass = new ClassesServiceImpl().findAll();
+        request.setAttribute("listClass",listClass);
         request.getRequestDispatcher("/views/student/student-form.jsp").forward(request,response);
     }
 
@@ -94,7 +96,7 @@ public class LoadStudent extends HttpServlet {
         }
 
         String address = request.getParameter("address");
-        Integer classId = Integer.parseInt(request.getParameter("classId"));
+        String classId = request.getParameter("classId");
 
         Boolean studentGender = true;
 
@@ -102,7 +104,7 @@ public class LoadStudent extends HttpServlet {
         if (gender == null) studentGender = false;
 
 
-        Student student = new Student(1,fullName, studentGender,birthday,address,classId);
+        Student student = new Student(2,fullName, studentGender,birthday,address,classId);
 
         studentService.add(student);
 
@@ -113,6 +115,8 @@ public class LoadStudent extends HttpServlet {
         int id = Integer.parseInt(request.getParameter("id"));
         Student existStudent = studentService.findById(id);
         request.setAttribute("student", existStudent);
+        List<Classes> listClass = new ClassesServiceImpl().findAll();
+        request.setAttribute("listClass",listClass);
         request.getRequestDispatcher("/views/student/student-form.jsp").forward(request,response);
     }
 
@@ -130,7 +134,7 @@ public class LoadStudent extends HttpServlet {
         }
 
         String address = request.getParameter("address");
-        Integer classId = Integer.parseInt(request.getParameter("classId"));
+        String classId = request.getParameter("classId");
 
         Boolean studentGender = true;
 

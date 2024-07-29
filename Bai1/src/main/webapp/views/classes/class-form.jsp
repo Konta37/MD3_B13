@@ -15,13 +15,14 @@
 <h1>${classD==null ? "Create new class" : "Update class"}</h1>
 <form action="LoadClasses" method="post">
     <input type="hidden" name="action" value="${classD == null ? 'save' : 'update'}">
-    <c:if test="${classD != null}">
-    <input type="hidden" name="id" value="${classD.classId}">
-    </c:if>
+    <label for="id">Class name: </label>
+    <input type="text" name="id" id="id" value="${classD != null ? classD.classId : ''}" required>
     <label for="className">Class name: </label>
     <input type="text" name="className" id="className" value="${classD != null ? classD.className : ''}" required>
     <label for="status">Status: </label>
     <input type="checkbox" name="status" id="status" ${classD != null && classD.status ? 'checked' : ''}>
     <button type="submit">Save</button>
+</form>
+
 </body>
 </html>

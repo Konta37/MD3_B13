@@ -18,17 +18,21 @@
     <c:if test="${student != null}">
     <input type="hidden" name="id" value="${student.stuId}">
     </c:if>
-    <label for="fullName">Class name: </label>
+    <label for="fullName">Full name: </label>
     <input type="text" name="fullName" id="fullName" value="${student != null ? student.fullName : ''}" required>
     <label for="gender">Gender: </label>
     <input type="checkbox" name="gender" id="gender" ${student != null && student.gender ? 'checked' : ''}>
     <label for="birthday">birthday: </label>
-    <input type="text" name="birthday" id="birthday" value="${student != null ? student.birthday : ''}" required>
+    <input type="date" name="birthday" id="birthday" value="${student != null ? student.birthday : ''}" required>
     <label for="address">address: </label>
     <input type="text" name="address" id="address" value="${student != null ? student.address : ''}" required>
-    <label for="classId">Class Id: </label>
-
-    <input type="text" name="classId" id="classId" value="${student != null ? student.classId : ''}" required>
+    <label for="classId">Class name: </label>
+    <select name="classId" id="classId">
+        <option value="">------- selection -------</option>
+        <c:forEach items="${listClass}" var="d">
+            <option value="${d.classId}">${d.className}</option>
+        </c:forEach>
+    </select>
     <button type="submit">Save</button>
 </body>
 </html>

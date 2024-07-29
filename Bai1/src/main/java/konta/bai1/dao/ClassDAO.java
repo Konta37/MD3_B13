@@ -6,9 +6,9 @@ import java.util.List;
 
 public interface ClassDAO {
     List<Classes> findAll();
-    Classes findById(Integer classID);
+    Classes findById(String classID);
     boolean add(Classes classes);
     boolean edit(Classes classes);
-    boolean delete(Integer classID);
+    boolean delete(String classID);
     List<Classes> findByName(String className);
 }

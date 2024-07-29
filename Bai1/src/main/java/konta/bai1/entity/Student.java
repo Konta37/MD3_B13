@@ -8,12 +8,12 @@ public class Student {
     private Boolean gender;
     private Date birthday;
     private String address;
-    private int classId;
+    private String classId;
 
     public Student() {
     }
 
-    public Student(int stuId, String fullName, Boolean gender, Date birthday, String address, int classId) {
+    public Student(int stuId, String fullName, Boolean gender, Date birthday, String address, String classId) {
         this.stuId = stuId;
         this.fullName = fullName;
         this.gender = gender;
@@ -62,11 +62,11 @@ public class Student {
         this.address = address;
     }
 
-    public int getClassId() {
+    public String getClassId() {
         return classId;
     }
 
-    public void setClassId(int classId) {
+    public void setClassId(String classId) {
         this.classId = classId;
     }
 }

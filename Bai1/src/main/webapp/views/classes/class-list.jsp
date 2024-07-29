@@ -41,26 +41,25 @@
                 <td>${u.className}</td>
                 <td>${u.status ? "Active" : "Inactive"}</td>
                 <td>
-                    <a href="LoadClasses?action=edit&id=${u.id}">Update</a>
-                    <a href="LoadClasses?action=delete&id=${u.id}">Delete</a>
-                    <a href="LoadClasses?action=details&id=${u.id}">Show Details</a>
+                    <a href="LoadClasses?action=edit&id=${u.classId}">Update</a>
+                    <a href="LoadClasses?action=delete&id=${u.classId}">Delete</a>
+                    <a href="LoadClasses?action=details&id=${u.classId}">Show Details</a>
                 </td>
             </tr>
         </c:forEach>
     </table>
-    <a href="LoadClasses?action=create">Add new User</a>
     <button class="btn btn-primary">
-        add
+        <a href="LoadClasses?action=create">Add new Classes</a>
     </button>
     <button class="btn btn-warning">
-        edit
+        <a href="LoadStudent">Show List Student</a>
     </button>
     <button class="btn btn-danger">
-        delete
+        <a href="index.jsp">Back to Home</a>
     </button>
-    <button class="btn btn-success">
-        details
-    </button>
+<%--    <button class="btn btn-success">--%>
+<%--        details--%>
+<%--    </button>--%>
 </div>
 <!-- Optional JavaScript -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->

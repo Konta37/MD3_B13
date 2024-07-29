@@ -1,24 +1,24 @@
 package konta.bai1.entity;
 
 public class Classes {
-    private int classId;
+    private String classId;
     private String className;
     private Boolean status;
 
     public Classes() {
     }
 
-    public Classes(int classId, String className, Boolean status) {
+    public Classes(String classId, String className, Boolean status) {
         this.classId = classId;
         this.className = className;
         this.status = status;
     }
 
-    public int getClassId() {
+    public String getClassId() {
         return classId;
     }
 
-    public void setClassId(int classId) {
+    public void setClassId(String classId) {
         this.classId = classId;
     }
 

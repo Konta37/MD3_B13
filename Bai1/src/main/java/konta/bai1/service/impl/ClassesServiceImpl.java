@@ -13,7 +13,7 @@ public class ClassesServiceImpl implements ClassesService {
     }
 
     @Override
-    public Classes findById(Integer id) {
+    public Classes findById(String id) {
         return new ClassDAOImpl().findById(id);
     }
 
@@ -28,7 +28,7 @@ public class ClassesServiceImpl implements ClassesService {
     }
 
     @Override
-    public boolean delete(Integer id) {
+    public boolean delete(String id) {
         return new ClassDAOImpl().delete(id);
     }
 

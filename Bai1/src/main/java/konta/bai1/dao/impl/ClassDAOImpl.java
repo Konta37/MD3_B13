@@ -26,7 +26,7 @@ public class ClassDAOImpl implements ClassDAO {
             rs = pstmt.executeQuery();
             while (rs.next()) {
                 Classes a = new Classes();
-                a.setClassId(rs.getInt("classId"));
+                a.setClassId(rs.getString("classId"));
                 a.setClassName(rs.getString("className"));
                 a.setStatus(rs.getBoolean("status"));
 
@@ -41,7 +41,7 @@ public class ClassDAOImpl implements ClassDAO {
     }
 
     @Override
-    public Classes findById(Integer classID) {
+    public Classes findById(String classID) {
         Classes u = null;
 
         Connection con;
@@ -51,11 +51,11 @@ public class ClassDAOImpl implements ClassDAO {
         con = DatabaseUtility.getConnection();
         try {
             pstmt = con.prepareStatement("select * from Classes where classId=?");
-            pstmt.setInt(1, classID);
+            pstmt.setString(1,classID);
             rs = pstmt.executeQuery();
             if (rs.next()) {
                 u = new Classes();
-                u.setClassId(rs.getInt("classId"));
+                u.setClassId(rs.getString("classId"));
                 u.setClassName(rs.getString("className"));
                 u.setStatus(rs.getBoolean("status"));
             }
@@ -77,9 +77,10 @@ public class ClassDAOImpl implements ClassDAO {
 
         con = DatabaseUtility.getConnection();
         try {
-            pstmt = con.prepareStatement("insert into Classes(className,status) values (?,?)");
-            pstmt.setString(1, classes.getClassName());
-            pstmt.setBoolean(2, classes.getStatus());
+            pstmt = con.prepareStatement("insert into Classes(classId,className,status) values (?,?,?)");
+            pstmt.setString(1, classes.getClassId());
+            pstmt.setString(2, classes.getClassName());
+            pstmt.setBoolean(3, classes.getStatus());
 
             int i = pstmt.executeUpdate();
             if (i > 0)
@@ -106,7 +107,7 @@ public class ClassDAOImpl implements ClassDAO {
             pstmt.setString(1, classes.getClassName());
             pstmt.setBoolean(2, classes.getStatus());
 
-            pstmt.setInt(3, classes.getClassId());
+            pstmt.setString(3, classes.getClassId());
 
             int i = pstmt.executeUpdate();
             if (i > 0)
@@ -121,7 +122,7 @@ public class ClassDAOImpl implements ClassDAO {
     }
 
     @Override
-    public boolean delete(Integer classID) {
+    public boolean delete(String classID) {
         boolean bl = false;
 
         Connection con;
@@ -130,7 +131,7 @@ public class ClassDAOImpl implements ClassDAO {
         con = DatabaseUtility.getConnection();
         try {
             pstmt = con.prepareStatement("delete from Classes where classId=?");
-            pstmt.setInt(1, classID);
+            pstmt.setString(1,classID);
             int i = pstmt.executeUpdate();
             if (i > 0)
                 bl = true;
@@ -162,7 +163,7 @@ public class ClassDAOImpl implements ClassDAO {
             rs = pstmt.executeQuery();
             while (rs.next()) {
                 Classes u = new Classes();
-                u.setClassId(rs.getInt("classId"));
+                u.setClassId(rs.getString("classId"));
                 u.setClassName(rs.getString("className"));
                 u.setStatus(rs.getBoolean("status"));
                 list.add(u);

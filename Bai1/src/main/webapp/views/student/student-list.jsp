@@ -46,28 +46,23 @@
                 <td>${u.gender ? "Male" : "Female"}</td>
                 <td>${u.birthday}</td>
                 <td>${u.address}</td>
-                <td>${u.status ? "Active" : "Inactive"}</td>
                 <td>${u.classId}</td>
                 <td>
-                    <a href="LoadStudent?action=edit&id=${u.id}">Update</a>
-                    <a href="LoadStudent?action=delete&id=${u.id}">Delete</a>
-                    <a href="LoadStudent?action=details&id=${u.id}">Show Details</a>
+                    <a href="LoadStudent?action=edit&id=${u.stuId}">Update</a>
+                    <a href="LoadStudent?action=delete&id=${u.stuId}">Delete</a>
+                    <a href="LoadStudent?action=details&id=${u.stuId}">Show Details</a>
                 </td>
             </tr>
         </c:forEach>
     </table>
-    <a href="LoadStudent?action=create">Add new User</a>
     <button class="btn btn-primary">
-        add
+        <a href="LoadStudent?action=create">Add new Student</a>
     </button>
     <button class="btn btn-warning">
-        edit
+        <a href="LoadClasses">Show List Classes</a>
     </button>
     <button class="btn btn-danger">
-        delete
-    </button>
-    <button class="btn btn-success">
-        details
+        <a href="index.jsp">Back to Home</a>
     </button>
 </div>
 <!-- Optional JavaScript -->

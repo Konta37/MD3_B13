@@ -76,6 +76,7 @@ public class LoadClasses extends HttpServlet {
     }
 
     private void saveClass(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+        String classId = request.getParameter("id");
         String className = request.getParameter("className");
         String status = request.getParameter("status");
 
@@ -83,7 +84,7 @@ public class LoadClasses extends HttpServlet {
 
         if (status == null) classStatus = false;
 
-        Classes classes = new Classes(1,className, classStatus);
+        Classes classes = new Classes(classId,className, classStatus);
 
         classesService.add(classes);
 
@@ -91,14 +92,15 @@ public class LoadClasses extends HttpServlet {
 
     }
     private void showEditForm(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-        int id = Integer.parseInt(request.getParameter("id"));
-        Classes existClass = classesService.findById(id);
+        String classId = request.getParameter("id");
+        Classes existClass = classesService.findById(classId);
+        System.out.println(existClass.getClassId());
         request.setAttribute("classD", existClass);
         request.getRequestDispatcher("/views/classes/class-form.jsp").forward(request,response);
     }
 
     private void updateClass(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-        int id = Integer.parseInt(request.getParameter("id"));
+        String classId = request.getParameter("id");
         String className = request.getParameter("className");
         String status = request.getParameter("status");
 
@@ -106,21 +108,22 @@ public class LoadClasses extends HttpServlet {
 
         if (status == null) accountClass = false;
 
-        Classes classes = new Classes(id, className, accountClass);
+        Classes classes = new Classes(classId, className, accountClass);
         classesService.edit(classes);
+        System.out.println(classes.getClassId());
 
         response.sendRedirect("LoadClasses");
     }
 
     private void deleteClasses(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-        int id = Integer.parseInt(request.getParameter("id"));
-        classesService.delete(id);
+        String classId = request.getParameter("id");
+        classesService.delete(classId);
         response.sendRedirect("LoadClasses");
     }
 
     private void showDetail(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-        int id = Integer.parseInt(request.getParameter("id"));
-        Classes classes = classesService.findById(id);
+        String classId = request.getParameter("id");
+        Classes classes = classesService.findById(classId);
 
         request.setAttribute("class", classes);
         request.getRequestDispatcher("/views/classes/class-details.jsp").forward(request, response);

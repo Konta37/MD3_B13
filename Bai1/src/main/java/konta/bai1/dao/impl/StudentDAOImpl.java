@@ -27,10 +27,10 @@ public class StudentDAOImpl implements StudentDAO {
                 e.setGender(rs.getBoolean("gender"));
                 e.setBirthday(rs.getDate("birthday"));
                 e.setAddress(rs.getString("address"));
-                e.setClassId(rs.getInt("classId"));
+                e.setClassId(rs.getString("classId"));
 
                 list.add(e);
-                con.commit();
+
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -56,12 +56,12 @@ public class StudentDAOImpl implements StudentDAO {
             rs = cstmt.executeQuery();
             if(rs.next()){
                 e = new Student();
-                e.setStuId(rs.getInt("empId"));
+                e.setStuId(rs.getInt("stuId"));
                 e.setFullName(rs.getString("fullName"));
                 e.setGender(rs.getBoolean("gender"));
                 e.setBirthday(rs.getDate("birthday"));
                 e.setAddress(rs.getString("address"));
-                e.setClassId(rs.getInt("classId"));
+                e.setClassId(rs.getString("classId"));
             }
         } catch (SQLException e1) {
             throw new RuntimeException(e1);
@@ -86,7 +86,7 @@ public class StudentDAOImpl implements StudentDAO {
             cstmt.setBoolean(2, student.getGender());
             cstmt.setDate(3, new Date(student.getBirthday().getTime()));
             cstmt.setString(4, student.getAddress());
-            cstmt.setInt(5, student.getClassId());
+            cstmt.setString(5, student.getClassId());
             int i = cstmt.executeUpdate();
             if(i>0)
                 bl = true;
@@ -109,12 +109,12 @@ public class StudentDAOImpl implements StudentDAO {
         con = DatabaseUtility.getConnection();
         try {
             cstmt = con.prepareCall("{call update_student(?,?,?,?,?,?)}");
-            cstmt.setInt(1, student.getClassId());
+            cstmt.setInt(1, student.getStuId());
             cstmt.setString(2, student.getFullName());
             cstmt.setBoolean(3, student.getGender());
             cstmt.setDate(4, new Date(student.getBirthday().getTime()));
             cstmt.setString(5, student.getAddress());
-            cstmt.setInt(6, student.getClassId());
+            cstmt.setString(6, student.getClassId());
             int i = cstmt.executeUpdate();
             if(i>0)
                 bl = true;
@@ -171,7 +171,7 @@ public class StudentDAOImpl implements StudentDAO {
                 s.setGender(rs.getBoolean("gender"));
                 s.setBirthday(rs.getDate("birthday"));
                 s.setAddress(rs.getString("address"));
-                s.setClassId(rs.getInt("classId"));
+                s.setClassId(rs.getString("classId"));
                 list.add(s);
             }
         } catch (SQLException e) {
