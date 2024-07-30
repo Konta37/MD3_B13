@@ -117,8 +117,15 @@ public class LoadClasses extends HttpServlet {
 
     private void deleteClasses(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         String classId = request.getParameter("id");
-        classesService.delete(classId);
-        response.sendRedirect("LoadClasses");
+        boolean check = classesService.delete(classId);
+//        System.out.println(classesService.delete(classId));
+        if(!check){
+            String errorDelete = "Can't delete student from Class";
+            request.setAttribute("errorDelete",errorDelete);
+        }
+//        response.sendRedirect("LoadClasses");
+        request.setAttribute("classes", classesService.findAll());
+        request.getRequestDispatcher("/views/classes/class-list.jsp").forward(request,response);
     }
 
     private void showDetail(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {

@@ -57,6 +57,7 @@
     <button class="btn btn-danger">
         <a href="index.jsp">Back to Home</a>
     </button>
+    <h1>${errorDelete}</h1>
 <%--    <button class="btn btn-success">--%>
 <%--        details--%>
 <%--    </button>--%>

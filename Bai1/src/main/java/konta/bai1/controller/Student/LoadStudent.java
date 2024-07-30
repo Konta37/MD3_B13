@@ -149,8 +149,11 @@ public class LoadStudent extends HttpServlet {
 
     private void deleteStudents(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         int id = Integer.parseInt(request.getParameter("id"));
+
         studentService.delete(id);
+
         response.sendRedirect("LoadStudent");
+//        request.getRequestDispatcher("LoadStudent").forward(request,response);
     }
 
     private void showDetail(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {

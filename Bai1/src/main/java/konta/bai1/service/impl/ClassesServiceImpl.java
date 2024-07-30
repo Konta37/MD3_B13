@@ -7,6 +7,7 @@ import konta.bai1.service.ClassesService;
 import java.util.List;
 
 public class ClassesServiceImpl implements ClassesService {
+
     @Override
     public List<Classes> findAll() {
         return new ClassDAOImpl().findAll();

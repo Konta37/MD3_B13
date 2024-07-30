@@ -3,6 +3,8 @@ package konta.bai1.dao.impl;
 import konta.bai1.dao.ClassDAO;
 import konta.bai1.db.DatabaseUtility;
 import konta.bai1.entity.Classes;
+import konta.bai1.entity.Student;
+import konta.bai1.service.impl.StudentServiceImpl;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -129,6 +131,22 @@ public class ClassDAOImpl implements ClassDAO {
         PreparedStatement pstmt;
 
         con = DatabaseUtility.getConnection();
+
+        //check if student has in class
+        boolean studentExist = false;
+        StudentServiceImpl studentService = new StudentServiceImpl();
+        List<Student> students = studentService.findAll();
+        for (int i = 0; i < students.size(); i++) {
+            if (students.get(i).getClassId().equals(classID)) {
+                studentExist = true;
+                break;
+            }
+        }
+        if (studentExist) {
+            System.out.println("Co Student trong lop. Ko xoa dc");
+            return false;
+        }
+
         try {
             pstmt = con.prepareStatement("delete from Classes where classId=?");
             pstmt.setString(1,classID);
