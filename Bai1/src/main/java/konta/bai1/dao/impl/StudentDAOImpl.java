@@ -23,6 +23,7 @@ public class StudentDAOImpl implements StudentDAO {
             rs = cstmt.executeQuery();
             while(rs.next()){
                 Student e = new Student();
+                e.setStuId(rs.getInt("stuId"));
                 e.setFullName(rs.getString("fullName"));
                 e.setGender(rs.getBoolean("gender"));
                 e.setBirthday(rs.getDate("birthday"));
@@ -30,7 +31,6 @@ public class StudentDAOImpl implements StudentDAO {
                 e.setClassId(rs.getString("classId"));
 
                 list.add(e);
-
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -51,6 +51,7 @@ public class StudentDAOImpl implements StudentDAO {
 
         con = DatabaseUtility.getConnection();
         try {
+
             cstmt = con.prepareCall("{call get_student_by_id(?)}");
             cstmt.setInt(1, studentId);
             rs = cstmt.executeQuery();
